@@ -11,42 +11,27 @@ yarn add @tdio/rule-set -D
 ## Usage
 
 ```
-import { LispTree, createRuleList, RuleMatcher, normalizeCondition } from '@tdio/rule-set'
+import { createRuleList, normalizeCondition } from '@tdio/rule-set'
 
-const { whitelist, blacklist } = {
-  whitelist: ['/',
-    ['monitor'],
-    ['logCenter'],
-    ['tenantCenter'],
-    ['system']
-  ],
-  blacklist: ['/',
-    ['monitor',
-      ['platform']],
-    ['logCenter',
-      ['servicelog']],
-    ['system',
-      ['tag'], ['certificate']]
-  ]
+const whitelist = ['/',
+  ['monitor',
+    ['platform']],
+  ['logCenter',
+    ['servicelog']],
+  ['system',
+    ['tag'], ['certificate']]
+]
+
+const conditions = {
+  exclude: (s) => s.endsWith('/tag'),
+  whitelist: createRuleList(whitelist),
+  and: ['/system']
 }
 
-const conditions: Kv<RuleMatcher> = {}
-
-const wlObj = createRuleList(whitelist)
-if (wlObj.size() > 0) {
-  conditions.whitelist = s => wlObj.test(s, true)
-}
-
-const blObj = createRuleList(blacklist)
-conditions.blacklist = s => blObj.test(s)
-
-conditions.exclude = s => s == '/monitor/notAllow'
-
-export const matcher: RuleMatcher = normalizeCondition(conditions)
-console.log(matcher('/monitor'))  // true
-console.log(matcher('/monitor/ok')) // true
-console.log(matcher('/monitor/notAllow')) // false
-console.log(matcher('/monitor/platform')) // false
+const matcher1 = normalizeCondition(conditions)
+expect(matcher1('/system/tag')).toBe(false)
+expect(matcher1('/system/certificate')).toBe(true)
+expect(matcher1('/monitor/platform')).toBe(false)
 ```
 
 ## License

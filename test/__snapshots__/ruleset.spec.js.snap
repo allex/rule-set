@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rule-list transform lisp tree to a whitelist 1`] = `
+Array [
+  "/monitor/platform",
+  "/logCenter/servicelog",
+  "/system/tag",
+  "/system/certificate",
+]
+`;
