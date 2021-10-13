@@ -1,0 +1,66 @@
+{
+  "name": "@tdio/rule-set",
+  "version": "1.0.0",
+  "description": "Rule set with condition compose and lisp whilte list manage",
+  "jsnext:main": "lib/index.esm.js",
+  "module": "lib/index.esm.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "allex/rule-set",
+  "keywords": [
+    "rule-set",
+    "condition compose"
+  ],
+  "scripts": {
+    "lint": "true",
+    "precommit": "yarn lint && yarn test",
+    "test": "jest --coverage --passWithNoTests",
+    "build": "(test -n \"$CI\" || yarn lint) && rb -c",
+    "prepare": "test -n \"$CI\" || yarn build",
+    "prerelease": "standard-version --release-as patch"
+  },
+  "author": "allex <allex.wxn@gmail.com> (http://iallex.com/)",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/runtime": "^7.6.2",
+    "@types/node": "^10.5.4",
+    "babel-core": "bridge",
+    "babel-jest": "^23.6.0",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0"
+  },
+  "license": "MIT",
+  "files": [
+    "lib/",
+    "types"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "modulePaths": [
+      "src"
+    ],
+    "testMatch": [
+      "**/?(*.)+(spec|test).?(m)js"
+    ],
+    "roots": [
+      "test"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "transform": {
+      "\\.js$": "babel-jest"
+    },
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcovonly",
+      "clover"
+    ]
+  }
+}
