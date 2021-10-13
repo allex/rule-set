@@ -1,6 +1,6 @@
 # @tdio/rule-set
 
-Rule set with condition compose and lisp whilte list manage
+Rule set with condition compose and lisp whitelist manage
 
 ## Installation
 

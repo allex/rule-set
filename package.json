@@ -1,7 +1,7 @@
 {
   "name": "@tdio/rule-set",
   "version": "1.0.0",
-  "description": "Rule set with condition compose and lisp whilte list manage",
+  "description": "Rule set with condition compose and lisp whitelist manage",
   "jsnext:main": "lib/index.esm.js",
   "module": "lib/index.esm.js",
   "main": "lib/index.js",
